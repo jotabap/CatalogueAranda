@@ -15,5 +15,8 @@ namespace CatalogueAranda.Models.DTOs
         public string Category { get; set; }
 
         public string Image { get; set; }
+
+        public string UsuarioCreacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
     }
 }

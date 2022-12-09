@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CatalogueAranda.Entity\CatalogueAranda.Entity.csproj" />
+    <ProjectReference Include="..\CatalogueAranda.Models\CatalogueAranda.Models.csproj" />
   </ItemGroup>
 
 </Project>

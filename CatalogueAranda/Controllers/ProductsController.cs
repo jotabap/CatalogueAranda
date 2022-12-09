@@ -1,6 +1,9 @@
 ﻿
-using CatalogueAranda.Entities.Entities;
+using AutoMapper;
+using CatalogueAranda.Entity.Entities;
+using CatalogueAranda.Entity.Entities;
 using CatalogueAranda.Model.ResponseModel;
+using CatalogueAranda.Models.DTOs;
 using CatalogueAranda.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +15,20 @@ namespace CatalogueAranda.Controllers
     public class ProductsController : BaseApiController
     {
         private ProductService _productservices;
-        public ProductsController(ProductService productservices)
+        private readonly IMapper mapper;
+
+        public ProductsController(ProductService productservices, IMapper mapper)
         {
             _productservices = productservices;
+            this.mapper = mapper;
         }
         [HttpPost]
         [Route("InsertProduct")]
-        public async Task<ActionResult> InsertProduct(Product model)
+        public async Task<ActionResult> InsertProduct(ProductInsertDTO modelDto)
         {
             try
             {
+                var model = mapper.Map<Product>(modelDto);
 
                 var result = (await _productservices.
                     InsertModel(model).ConfigureAwait(false)) as GenericResponse;

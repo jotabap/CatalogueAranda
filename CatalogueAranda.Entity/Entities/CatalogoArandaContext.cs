@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace CatalogueAranda.Entities.Entities;
+namespace CatalogueAranda.Entity.Entities;
 
 public partial class CatalogoArandaContext : DbContext
 {

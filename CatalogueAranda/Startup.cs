@@ -1,5 +1,5 @@
 ﻿
-using CatalogueAranda.Entities.Entities;
+using CatalogueAranda.Entity.Entities;
 using CatalogueAranda.Services;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -23,6 +23,7 @@ namespace CatalogueAranda
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddScoped<ProductService>();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc()
                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);

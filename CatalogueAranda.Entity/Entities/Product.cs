@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CatalogueAranda.Entities.Entities;
+namespace CatalogueAranda.Entity.Entities;
 
 public partial class Product:EntityBase
 {

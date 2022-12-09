@@ -1,4 +1,4 @@
-﻿using CatalogueAranda.Entities.Entities;
+﻿using CatalogueAranda.Entity.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

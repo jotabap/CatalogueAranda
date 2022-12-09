@@ -1,4 +1,4 @@
-﻿using CatalogueAranda.Entities.Entities;
+﻿using CatalogueAranda.Entity.Entities;
 using CatalogueAranda.Model.ResponseModel;
 using CatalogueAranda.Models.BidingModels;
 using CatalogueAranda.Utility.CommonDecoration;
