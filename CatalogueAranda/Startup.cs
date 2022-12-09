@@ -1,6 +1,8 @@
 ﻿
 using CatalogueAranda.Entities.Entities;
+using CatalogueAranda.Services;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace CatalogueAranda
 {
@@ -20,6 +22,10 @@ namespace CatalogueAranda
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddScoped<ProductService>();
+
+            services.AddMvc()
+               .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
