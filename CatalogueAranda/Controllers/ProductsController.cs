@@ -16,16 +16,36 @@ namespace CatalogueAranda.Controllers
         {
             _productservices = productservices;
         }
+        [HttpPost]
+        [Route("InsertProduct")]
+        public async Task<ActionResult> InsertProduct(Product model)
+        {
+            try
+            {
 
+                var result = (await _productservices.
+                    InsertModel(model).ConfigureAwait(false)) as GenericResponse;
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new GenericResponse
+                {
+                    ErrorMessage = $"{e.Message ?? string.Empty}",
+                    OperationSucces = false
+                });
+            }
+        }
         [HttpGet]
-        [Route("GetAllProducts/{filtro}/{page}/{cantity}")]
-        public async Task<ActionResult> GetAllProducts([FromRoute] string filtro, int page, int cantity)
+        [Route("FilterProducts/{filtro}/{page}/{cantity}")]
+        public async Task<ActionResult> FilterProducts([FromRoute] string filtro, int page, int cantity)
         {
             try
             {
       
                 var result = (await _productservices.
-                    GetAll(filtro, page, cantity).ConfigureAwait(false)) as GenericResponse;
+                    FilterSearch(filtro, page, cantity).ConfigureAwait(false)) as GenericResponse;
 
                 return Ok(result);
             }
