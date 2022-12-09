@@ -24,7 +24,7 @@ namespace CatalogueAranda.Controllers
         }
         [HttpPost]
         [Route("InsertProduct")]
-        public async Task<ActionResult> InsertProduct(ProductInsertDTO modelDto)
+        public async Task<ActionResult> InsertProduct([FromForm]ProductInsertDTO modelDto)
         {
             try
             {
@@ -64,6 +64,51 @@ namespace CatalogueAranda.Controllers
                     OperationSucces = false
                 });
             }
+        }
+        [HttpPut("{id}")]
+       // [Route("EditProduct")]
+        public async Task<ActionResult> EditProduct(int id,[FromForm] ProductInsertDTO modelDto)
+        {
+            try
+            {
+                var model = mapper.Map<Product>(modelDto);
+
+                var result = (await _productservices.
+                    EditModel(id,model).ConfigureAwait(false)) as GenericResponse;
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new GenericResponse
+                {
+                    ErrorMessage = $"{e.Message ?? string.Empty}",
+                    OperationSucces = false
+                });
+            }
+        }
+        
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+               
+
+                var result = (await _productservices.
+                    DeleteItem(id).ConfigureAwait(false)) as GenericResponse;
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new GenericResponse
+                {
+                    ErrorMessage = $"{e.Message ?? string.Empty}",
+                    OperationSucces = false
+                });
+            }
+
         }
     }
 }
