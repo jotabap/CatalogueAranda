@@ -2,6 +2,7 @@
 using CatalogueAranda.Entity.Entities;
 using CatalogueAranda.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
 namespace CatalogueAranda
@@ -21,7 +22,20 @@ namespace CatalogueAranda
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            //services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+           c.SwaggerDoc("v1", new OpenApiInfo
+           {
+               Version="v1",
+               Title = "Catalogue Aranda API",
+               Description="Api desarrollada en .NET 6",
+               Contact= new OpenApiContact
+               {
+                   Name="John Batista",
+                   Email="johnk_batista@yahoo.com"
+               }
+
+           }));
             services.AddScoped<ProductService>();
             services.AddAutoMapper(typeof(Startup));
 
